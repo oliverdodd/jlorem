@@ -1,0 +1,150 @@
+package net._01001111.text;
+
+import java.util.Random;
+
+public class LoremIpsum {
+
+	/*
+	 * The Lorem Ipsum Common Paragraph
+	 */
+	protected final String standard = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+	private final String[] words = { "a", "ac", "accumsan", "ad", "adipiscing",
+			"aenean", "aliquam", "aliquet", "amet", "ante", "aptent", "arcu",
+			"at", "auctor", "augue", "bibendum", "blandit", "class", "commodo",
+			"condimentum", "congue", "consectetur", "consequat", "conubia",
+			"convallis", "cras", "cubilia", "cum", "curabitur", "curae",
+			"cursus", "dapibus", "diam", "dictum", "dictumst", "dignissim",
+			"dis", "dolor", "donec", "dui", "duis", "egestas", "eget",
+			"eleifend", "elementum", "elit", "enim", "erat", "eros", "est",
+			"et", "etiam", "eu", "euismod", "facilisi", "facilisis", "fames",
+			"faucibus", "felis", "fermentum", "feugiat", "fringilla", "fusce",
+			"gravida", "habitant", "habitasse", "hac", "hendrerit",
+			"himenaeos", "iaculis", "id", "imperdiet", "in", "inceptos",
+			"integer", "interdum", "ipsum", "justo", "lacinia", "lacus",
+			"laoreet", "lectus", "leo", "libero", "ligula", "litora",
+			"lobortis", "lorem", "luctus", "maecenas", "magna", "magnis",
+			"malesuada", "massa", "mattis", "mauris", "metus", "mi",
+			"molestie", "mollis", "montes", "morbi", "mus", "nam", "nascetur",
+			"natoque", "nec", "neque", "netus", "nibh", "nisi", "nisl", "non",
+			"nostra", "nulla", "nullam", "nunc", "odio", "orci", "ornare",
+			"parturient", "pellentesque", "penatibus", "per", "pharetra",
+			"phasellus", "placerat", "platea", "porta", "porttitor", "posuere",
+			"potenti", "praesent", "pretium", "primis", "proin", "pulvinar",
+			"purus", "quam", "quis", "quisque", "rhoncus", "ridiculus",
+			"risus", "rutrum", "sagittis", "sapien", "scelerisque", "sed",
+			"sem", "semper", "senectus", "sit", "sociis", "sociosqu",
+			"sodales", "sollicitudin", "suscipit", "suspendisse", "taciti",
+			"tellus", "tempor", "tempus", "tincidunt", "torquent", "tortor",
+			"tristique", "turpis", "ullamcorper", "ultrices", "ultricies",
+			"urna", "ut", "varius", "vehicula", "vel", "velit", "venenatis",
+			"vestibulum", "vitae", "vivamus", "viverra", "volutpat",
+			"vulputate" };
+	private final String[] punctuation = { ".", "?" };
+	private final String _n = System.getProperty("line.separator");
+	private Random random = new Random();
+	
+	public LoremIpsum() {
+	}
+
+	/**
+	 * Get a random word
+	 */
+	public String randomWord() {
+		return words[random.nextInt(words.length - 1)];
+	}
+
+	/**
+	 * Get a random punctuation mark
+	 */
+	public String randomPunctuation() {
+		return punctuation[random.nextInt(punctuation.length - 1)];
+	}
+
+	/**
+	 * Get a string of words
+	 * 
+	 * @param count
+	 *            - the number of words to fetch
+	 */
+	public String words(int count) {
+		String s = "";
+		while (count-- > 0)
+			s += randomWord() + " ";
+		return s.trim();
+	}
+
+	/**
+	 * Get a sentence fragment
+	 */
+	public String sentenceFragment() {
+		return words(random.nextInt(10) + 3);
+	}
+
+	/**
+	 * Get a sentence
+	 */
+	public String sentence() {
+		// first word
+		String s = randomWord();
+		s = s.substring(0, 1).toUpperCase() + s.substring(1);
+		// commas?
+		if (random.nextBoolean()) {
+			for (int i = 0; i < random.nextInt(3) + 1; i++)
+				s += sentenceFragment() + ", ";
+		}
+		// last fragment + punctuation
+		return s + sentenceFragment() + randomPunctuation();
+	}
+
+	/**
+	 * Get multiple sentences
+	 * 
+	 * @param count
+	 *            - the number of sentences
+	 */
+	public String sentences(int count) {
+		String s = "";
+		while (count-- > 0)
+			s += sentence() + "  ";
+		return s.trim();
+	}
+
+	/**
+	 * Get a paragraph
+	 * 
+	 * @useStandard - use the common Lorem Ipsum paragraph?
+	 */
+	public String paragraph(boolean useStandard) {
+		String s = "";
+		if (useStandard) {
+			s = standard;
+		} else {
+			s = sentences(random.nextInt(3) + 2);
+		}
+		return s;
+	}
+
+	public String paragraph() {
+		return paragraph(false);
+	}
+
+	/**
+	 * Get multiple paragraphs
+	 * 
+	 * @param count
+	 *            - the number of paragraphs
+	 * @useStandard - lead with the common Lorem Ipsum paragraph?
+	 */
+	public String paragraphs(int count, boolean useStandard) {
+		String s = "";
+		while (count-- > 0) {
+			s += paragraph(useStandard) + _n + _n;
+			useStandard = false;
+		}
+		return s.trim();
+	}
+
+	public String paragraphs(int count) {
+		return paragraphs(count, false);
+	}
+}
