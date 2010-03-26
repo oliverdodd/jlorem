@@ -2,6 +2,10 @@ package net._01001111.text;
 
 import java.util.Random;
 
+/*
+ * Copyright 2010 Oliver C Dodd http://01001111.net
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ */
 public class LoremIpsum {
 
 	/*
@@ -113,7 +117,7 @@ public class LoremIpsum {
 	/**
 	 * Get a paragraph
 	 * 
-	 * @useStandard - use the common Lorem Ipsum paragraph?
+	 * @useStandard - get the standard Lorem Ipsum paragraph?
 	 */
 	public String paragraph(boolean useStandard) {
 		String s = "";
@@ -134,7 +138,7 @@ public class LoremIpsum {
 	 * 
 	 * @param count
 	 *            - the number of paragraphs
-	 * @useStandard - lead with the common Lorem Ipsum paragraph?
+	 * @useStandard - begin with the standard Lorem Ipsum paragraph?
 	 */
 	public String paragraphs(int count, boolean useStandard) {
 		String s = "";
