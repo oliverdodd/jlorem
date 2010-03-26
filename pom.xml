@@ -8,6 +8,7 @@
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>jlorem</name>
+	<description>lorem ipsum generator</description>
 	<url>http://01001111.net</url>
 	<inceptionYear>2009</inceptionYear>
 

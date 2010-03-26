@@ -89,7 +89,8 @@ public class LoremIpsum {
 		s = s.substring(0, 1).toUpperCase() + s.substring(1);
 		// commas?
 		if (random.nextBoolean()) {
-			for (int i = 0; i < random.nextInt(3) + 1; i++)
+			int r = random.nextInt(3) + 1;
+			for (int i = 0; i < r; i++)
 				s += sentenceFragment() + ", ";
 		}
 		// last fragment + punctuation
