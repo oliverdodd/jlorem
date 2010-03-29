@@ -9,18 +9,8 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>jlorem</name>
 	<description>lorem ipsum generator</description>
-	<url>http://01001111.net</url>
+	<url>http://01001111.net/lorem</url>
 	<inceptionYear>2009</inceptionYear>
-
-	<properties>
-		<commons-logging.version>1.1</commons-logging.version>
-		<junit.version>4.4</junit.version>
-		<slf4j.version>1.5.2</slf4j.version>
-	</properties>
-
-	<prerequisites>
-		<maven>2.0.6</maven>
-	</prerequisites>
 
 	<licenses>
 		<license>
@@ -29,38 +19,41 @@
 		</license>
 	</licenses>
 
+	<scm>
+		<connection>git://github.com/oliverdodd/jlorem.git</connection>
+		<url>http://github.com/oliverdodd/jlorem</url>
+	</scm>
+
 	<developers>
 		<developer>
 			<id>oliverdodd</id>
 			<name>Oliver Dodd</name>
 			<email>oliver.dodd@gmail.com</email>
+			<url>http://01001111.net</url>
 		</developer>
 	</developers>
 
-	<repositories>
-		<repository>
-			<id>central</id>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-	</repositories>
-	
+	<prerequisites>
+		<maven>2.0.6</maven>
+	</prerequisites>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
+			<version>1.5.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
-			<version>${commons-logging.version}</version>
+			<version>1.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>4.4</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -89,6 +82,19 @@
 						<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER</classpathContainer>
 					</classpathContainers>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
