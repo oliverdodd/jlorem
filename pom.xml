@@ -20,7 +20,7 @@
 	</licenses>
 
 	<scm>
-		<connection>git://github.com/oliverdodd/jlorem.git</connection>
+		<connection>scm:git:git://github.com/oliverdodd/jlorem.git</connection>
 		<url>http://github.com/oliverdodd/jlorem</url>
 	</scm>
 
