@@ -46,7 +46,7 @@ public class LoremIpsum {
 	private final String[] punctuation = { ".", "?" };
 	private final String _n = System.getProperty("line.separator");
 	private Random random = new Random();
-	
+
 	public LoremIpsum() {
 	}
 
@@ -71,10 +71,10 @@ public class LoremIpsum {
 	 *            - the number of words to fetch
 	 */
 	public String words(int count) {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		while (count-- > 0)
-			s += randomWord() + " ";
-		return s.trim();
+			s.append(randomWord()).append(" ");
+		return s.toString().trim();
 	}
 
 	/**
@@ -89,16 +89,18 @@ public class LoremIpsum {
 	 */
 	public String sentence() {
 		// first word
-		String s = randomWord();
-		s = s.substring(0, 1).toUpperCase() + s.substring(1);
+		String w = randomWord();
+		StringBuilder s = new StringBuilder(w.substring(0, 1).toUpperCase())
+				.append(w.substring(1));
 		// commas?
 		if (random.nextBoolean()) {
 			int r = random.nextInt(3) + 1;
 			for (int i = 0; i < r; i++)
-				s += sentenceFragment() + ", ";
+				s.append(sentenceFragment()).append(", ");
 		}
 		// last fragment + punctuation
-		return s + sentenceFragment() + randomPunctuation();
+		return s.append(sentenceFragment()).append(randomPunctuation())
+				.toString();
 	}
 
 	/**
@@ -108,10 +110,10 @@ public class LoremIpsum {
 	 *            - the number of sentences
 	 */
 	public String sentences(int count) {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		while (count-- > 0)
-			s += sentence() + "  ";
-		return s.trim();
+			s.append(sentence()).append("  ");
+		return s.toString().trim();
 	}
 
 	/**
@@ -120,13 +122,7 @@ public class LoremIpsum {
 	 * @useStandard - get the standard Lorem Ipsum paragraph?
 	 */
 	public String paragraph(boolean useStandard) {
-		String s = "";
-		if (useStandard) {
-			s = standard;
-		} else {
-			s = sentences(random.nextInt(3) + 2);
-		}
-		return s;
+		return useStandard ? standard : sentences(random.nextInt(3) + 2);
 	}
 
 	public String paragraph() {
@@ -141,12 +137,12 @@ public class LoremIpsum {
 	 * @useStandard - begin with the standard Lorem Ipsum paragraph?
 	 */
 	public String paragraphs(int count, boolean useStandard) {
-		String s = "";
+		StringBuilder s = new StringBuilder();
 		while (count-- > 0) {
-			s += paragraph(useStandard) + _n + _n;
+			s.append(paragraph(useStandard)).append(_n).append(_n);
 			useStandard = false;
 		}
-		return s.trim();
+		return s.toString().trim();
 	}
 
 	public String paragraphs(int count) {
