@@ -91,7 +91,7 @@ public class LoremIpsum {
 		// first word
 		String w = randomWord();
 		StringBuilder s = new StringBuilder(w.substring(0, 1).toUpperCase())
-				.append(w.substring(1));
+				.append(w.substring(1)).append(" ");
 		// commas?
 		if (random.nextBoolean()) {
 			int r = random.nextInt(3) + 1;
